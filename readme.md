@@ -20,7 +20,8 @@ Commands:
 
 This project has the functionality to store data of any type. You can store data about a "Person" or a "Car" or a "Dog". For this you must create entities that will define the data saved by each type of register ("Person", "Car" or "Dog") you want.
 
-## Tags and Commits
+## Tags, Commits and comments about
+
 
 - 100_initial
   - First commit - project made by spring-initializr - no changes
@@ -30,6 +31,10 @@ This project has the functionality to store data of any type. You can store data
     - Contains the firsts topics: "Introduction", "running", "the project", "commits" and "tags".
 - 101_first_endpoint
   - the first endpoint returns the datetime of server
+- 102_spring_actuator
+  - Change /time to return an ISO-8601 representation of date
+    - This is a easier way to represent datetime in a string, a javascript code, for example, can turn it into a date object very easy.
+  - Added actuator dependency
 
 ## Tags
 
@@ -54,3 +59,12 @@ and GetMapping (https://docs.spring.io/spring-framework/docs/current/javadoc-api
 **GetMapping** annotation is a specialized version of @RequestMapping annotation that acts as a shortcut for @RequestMapping(method = RequestMethod.GET) (https://howtodoinjava.com/spring5/webmvc/controller-getmapping-postmapping/).
 
 Now, after running the application, it is possible to access the address http://localhost:8080/time and see something like: _Wed Nov 16 00:38:37 BRST 2022_ (result of the line "new Date().toString()" in the method "public String time()").
+
+
+### 102_spring_actuator
+
+Spring Boot's Actuator dependency is used to monitor and manage the Spring web application.
+
+
+
+
