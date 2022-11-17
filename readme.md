@@ -35,6 +35,8 @@ This project has the functionality to store data of any type. You can store data
   - Change /time to return an ISO-8601 representation of date
     - This is a easier way to represent datetime in a string, a javascript code, for example, can turn it into a date object very easy.
   - Added actuator dependency
+  - Change the port of actuator management server
+    - we change application.properties file defining the server port and the management server port
 
 ## Tags
 
@@ -64,7 +66,8 @@ Now, after running the application, it is possible to access the address http://
 ### 102_spring_actuator
 
 Spring Boot's Actuator dependency is used to monitor and manage the Spring web application.
+Now, after running the application, it is possible to access the address http://localhost:9001/actuator/health, for example, to see the status of the server ("UP" is expected).
 
-
+Actuator can respond in different port than the application, for that we change application.properties file.
 
 
