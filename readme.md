@@ -37,6 +37,7 @@ This project has the functionality to store data of any type. You can store data
   - Added actuator dependency
   - Change the port of actuator management server
     - we change application.properties file defining the server port and the management server port
+  - Enable all of actuator endpoints by properties file - Change the default discovery endpoint /actuator to /act by properties file
 
 ## Tags
 
@@ -66,8 +67,11 @@ Now, after running the application, it is possible to access the address http://
 ### 102_spring_actuator
 
 Spring Boot's Actuator dependency is used to monitor and manage the Spring web application.
+Actuator is mainly used to expose operational information about the running application — health, metrics, info, dump, env, etc. It uses HTTP endpoints or JMX beans to enable us to interact with it (https://www.baeldung.com/spring-boot-actuators).
 Now, after running the application, it is possible to access the address http://localhost:9001/actuator/health, for example, to see the status of the server ("UP" is expected).
 
 Actuator can respond in different port than the application, for that we change application.properties file.
 
+We change the default endpoint to http://localhost:9001/act and enable all the endpoints of actuator changing the properties "management.endpoints.web.exposure.include" and "management.endpoints.web.base-path".
 
+...
