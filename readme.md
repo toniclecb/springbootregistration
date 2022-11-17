@@ -38,6 +38,7 @@ This project has the functionality to store data of any type. You can store data
   - Change the port of actuator management server
     - we change application.properties file defining the server port and the management server port
   - Enable all of actuator endpoints by properties file - Change the default discovery endpoint /actuator to /act by properties file
+  - Added git informations into /act/info endpoint of actuator
 
 ## Tags
 
@@ -74,4 +75,4 @@ Actuator can respond in different port than the application, for that we change 
 
 We change the default endpoint to http://localhost:9001/act and enable all the endpoints of actuator changing the properties "management.endpoints.web.exposure.include" and "management.endpoints.web.base-path".
 
-...
+Now we can access git informations in http://localhost:9001/act/info endpoints thanks to "git-commit-id-plugin" plugin.
