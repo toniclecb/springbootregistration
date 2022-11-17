@@ -40,6 +40,7 @@ This project has the functionality to store data of any type. You can store data
   - Enable all of actuator endpoints by properties file - Change the default discovery endpoint /actuator to /act by properties file
   - Added git informations into /act/info endpoint of actuator
   - Added maven build informations into /act/info endpoint of actuator
+  - Change the exposure of actuator's endpoints to expose only info,health,metrics
 
 ## Tags
 
@@ -79,3 +80,4 @@ We change the default endpoint to http://localhost:9001/act and enable all the e
 Now we can access git informations in http://localhost:9001/act/info endpoint thanks to "git-commit-id-plugin" plugin.
 Also we can access maven build informations thanks to "spring-boot-maven-plugin" plugin, here we must define a "goal" in the pom file (< goal>build-info</ goal>).
 
+We also change the exposure of actuator's endpoints to expose only info,health,metrics by setting "management.endpoints.web.exposure.include" property, in the same way we can change "management.endpoints.web.exposure.exclude" property, but with the names of endpoints we want to exclude!
