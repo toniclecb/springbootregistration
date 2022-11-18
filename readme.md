@@ -4,6 +4,8 @@ By Cleiton Balansin
 
 ## Introduction
 
+This project was created to be used like a tutorial, you can follow the commits and see what was done in the code and the comments about writen in this file.
+
 The main objective of this project is to bring together the various technologies accessible by SpringBoot.
 The project starts as simple as possible, but over the commits new features will be added.
 You will find comments and explanations of each topic in the sections "Tags and Commits" and "Tags", 
@@ -41,6 +43,8 @@ This project has the functionality to store data of any type. You can store data
   - Added git informations into /act/info endpoint of actuator
   - Added maven build informations into /act/info endpoint of actuator
   - Change the exposure of actuator's endpoints to expose only info,health,metrics
+- 103_h2database
+  - Rename main class SpringbootRegistrationApplication and readme.md modifications
 
 ## Tags
 
@@ -48,7 +52,7 @@ This project has the functionality to store data of any type. You can store data
 
 The initial project has only two dependencies: 
 - "spring-boot-starter-web" (this one make your java project into a web java project),
-- "spring-boot-starter-test" (and this adds into your project the possibility to use tests, and a class SpringbootregistrationApplicationTests already exists in the initial project).
+- "spring-boot-starter-test" (and this adds into your project the possibility to use tests, and a class SpringbootRegistrationApplicationTests already exists in the initial project).
 
 Besides the dependencies we have the plugin:
 - "spring-boot-maven-plugin" (this one allows we use spring-boot commands in maven).
@@ -81,3 +85,5 @@ Now we can access git informations in http://localhost:9001/act/info endpoint th
 Also we can access maven build informations thanks to "spring-boot-maven-plugin" plugin, here we must define a "goal" in the pom file (< goal>build-info</ goal>).
 
 We also change the exposure of actuator's endpoints to expose only info,health,metrics by setting "management.endpoints.web.exposure.include" property, in the same way we can change "management.endpoints.web.exposure.exclude" property, but with the names of endpoints we want to exclude!
+
+### 103_h2database
