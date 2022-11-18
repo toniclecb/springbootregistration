@@ -46,6 +46,11 @@ This project has the functionality to store data of any type. You can store data
 - 103_h2database
   - Rename main class SpringbootRegistrationApplication and readme.md modifications
   - Create method run() with CommandLineRunner interface
+  - Import H2 and make a method to access (insert and query) relational data using JDBC
+- 104_xxxxxxxxx
+
+
+
 
 ## Tags
 
@@ -91,3 +96,9 @@ We also change the exposure of actuator's endpoints to expose only info,health,m
 
 First we created the method run() using CommandLineRunner interface: Used to indicate that a bean should run when it is contained within a SpringApplication. (https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/CommandLineRunner.html).
 
+Now we want the H2 database working on the project, after we will use this for something.
+We added the dependencies for H2 and "spring-boot-starter-jdbc" and all configuration is automatic in Spring Boot for H2, because of that we don't need create configurations like url connection, user, password, etc. We need only inject the object JdbcTemplate.
+In SpringbootRegistrationApplication.run() was implemented all tasks related to the database: drop table, create table, insert records, query.
+The object Car was created to make this tasks possible, see the packages created? we try start some clean architecture here.
+
+### 104_xxxxxxxxx
