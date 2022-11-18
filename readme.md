@@ -45,6 +45,7 @@ This project has the functionality to store data of any type. You can store data
   - Change the exposure of actuator's endpoints to expose only info,health,metrics
 - 103_h2database
   - Rename main class SpringbootRegistrationApplication and readme.md modifications
+  - Create method run() with CommandLineRunner interface
 
 ## Tags
 
@@ -87,3 +88,6 @@ Also we can access maven build informations thanks to "spring-boot-maven-plugin"
 We also change the exposure of actuator's endpoints to expose only info,health,metrics by setting "management.endpoints.web.exposure.include" property, in the same way we can change "management.endpoints.web.exposure.exclude" property, but with the names of endpoints we want to exclude!
 
 ### 103_h2database
+
+First we created the method run() using CommandLineRunner interface: Used to indicate that a bean should run when it is contained within a SpringApplication. (https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/CommandLineRunner.html).
+
