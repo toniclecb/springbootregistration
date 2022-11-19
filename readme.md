@@ -51,7 +51,7 @@ This project has the functionality to store data of any type. You can store data
   - Change the sout for Logger.info (slf4j)
   - Logging the exception in case of problem in database operations
   - Create logback configuration file logback.xml, log in console with level info
-
+  - Adding config to log into files, SizeAndTimeBasedRollingPolicy will create files with 1mb max
 
 
 ## Tags
@@ -107,3 +107,4 @@ The object Car was created to make this tasks possible, see the packages created
 
 It's very simple to use Logger. Import org.slf4j.Logger and create the object with LoggerFactory.getLogger(), after that we can use Logger.info() and anothers methods to log. Messages must be meaningful and always remember to log the exception.
 We can configurate the log, here we put the file logback.xml to log into console with info level.
+RollingFileAppender and SizeAndTimeBasedRollingPolicy are used to config the logs into files, files max 1mb in size, 30 days and 1gb max storage.

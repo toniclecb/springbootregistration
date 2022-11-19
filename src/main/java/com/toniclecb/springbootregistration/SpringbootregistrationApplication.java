@@ -29,12 +29,7 @@ public class SpringbootRegistrationApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// log message // log level
-		log.info("Initial INFO message log"); // info debug
-		log.trace("Initial TRACE message log"); //
-		log.debug("Initial DEBUG message log"); // debug
-		log.warn("Initial WARN message log"); // info debug
-		log.error("Initial ERROR message log"); // info debug error
+		testLogging();
 
 		try {
 			log.info("************* Creating tables *************");
@@ -67,6 +62,24 @@ public class SpringbootRegistrationApplication implements CommandLineRunner {
 			resultSetCars.forEach(car -> log.info(car.toString()));
 		} catch (DataAccessException e) {
 			log.error("Error while doing some database operation!", e);
+		}
+	}
+
+	/**
+	 * First we test the different levels of log.
+	 * Then we test the SizeAndTimeBasedRollingPolicy to verify if files of 1MB will be created.
+	 */
+	private void testLogging() {
+		// log message // log level
+		log.info("Initial INFO message log"); // info debug
+		log.trace("Initial TRACE message log"); //
+		log.debug("Initial DEBUG message log"); // debug
+		log.warn("Initial WARN message log"); // info debug
+		log.error("Initial ERROR message log"); // info debug error
+
+		for (int i = 0; i < 50000; i++) {
+			// this log section must create 3 files of log (1mb each!)
+			log.info("This is a message of test for logging proproses, file must cut in 1MB");
 		}
 	}
 
