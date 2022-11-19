@@ -29,6 +29,13 @@ public class SpringbootRegistrationApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		// log message // log level
+		log.info("Initial INFO message log"); // info debug
+		log.trace("Initial TRACE message log"); //
+		log.debug("Initial DEBUG message log"); // debug
+		log.warn("Initial WARN message log"); // info debug
+		log.error("Initial ERROR message log"); // info debug error
+
 		try {
 			log.info("************* Creating tables *************");
 
