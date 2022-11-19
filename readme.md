@@ -47,8 +47,8 @@ This project has the functionality to store data of any type. You can store data
   - Rename main class SpringbootRegistrationApplication and readme.md modifications
   - Create method run() with CommandLineRunner interface
   - Import H2 and make a method to access (insert and query) relational data using JDBC
-- 104_xxxxxxxxx
-
+- 104_Logging
+  - Change the sout for Logger.info (slf4j)
 
 
 
@@ -101,4 +101,6 @@ We added the dependencies for H2 and "spring-boot-starter-jdbc" and all configur
 In SpringbootRegistrationApplication.run() was implemented all tasks related to the database: drop table, create table, insert records, query.
 The object Car was created to make this tasks possible, see the packages created? we try start some clean architecture here.
 
-### 104_xxxxxxxxx
+### 104_Logging
+
+It's very simple to use Logger. Import org.slf4j.Logger and create the object with LoggerFactory.getLogger(), after that we can use Logger.info() and anothers methods to log.
