@@ -49,6 +49,7 @@ This project has the functionality to store data of any type. You can store data
   - Import H2 and make a method to access (insert and query) relational data using JDBC
 - 104_Logging
   - Change the sout for Logger.info (slf4j)
+  - Logging the exception in case of problem in database operations
 
 
 
@@ -103,4 +104,4 @@ The object Car was created to make this tasks possible, see the packages created
 
 ### 104_Logging
 
-It's very simple to use Logger. Import org.slf4j.Logger and create the object with LoggerFactory.getLogger(), after that we can use Logger.info() and anothers methods to log.
+It's very simple to use Logger. Import org.slf4j.Logger and create the object with LoggerFactory.getLogger(), after that we can use Logger.info() and anothers methods to log. Messages must be meaningful and always remember to log the exception.
