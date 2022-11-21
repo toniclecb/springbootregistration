@@ -77,10 +77,13 @@ public class SpringbootRegistrationApplication implements CommandLineRunner {
 		log.warn("Initial WARN message log"); // info debug
 		log.error("Initial ERROR message log"); // info debug error
 
+		/*
+		 * let's comment this section for now, we have already test this!
 		for (int i = 0; i < 50000; i++) {
 			// this log section must create 3 files of log (1mb each!)
-			log.info("This is a message of test for logging proproses, file must cut in 1MB");
+			log.info("This is a message of test for logging proposals, file must cut in 1MB");
 		}
+		*/
 	}
 
 }

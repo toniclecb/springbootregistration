@@ -52,6 +52,7 @@ This project has the functionality to store data of any type. You can store data
   - Logging the exception in case of problem in database operations
   - Create logback configuration file logback.xml, log in console with level info
   - Adding config to log into files, SizeAndTimeBasedRollingPolicy will create files with 1mb max
+  - Remove the code that generates logs
 
 
 ## Tags
