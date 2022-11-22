@@ -53,6 +53,8 @@ This project has the functionality to store data of any type. You can store data
   - Create logback configuration file logback.xml, log in console with level info
   - Adding config to log into files, SizeAndTimeBasedRollingPolicy will create files with 1mb max
   - Remove the code that generates logs
+- 105_Properties_files
+  - Added property to change the format of return from /time
 
 
 ## Tags
@@ -109,3 +111,7 @@ The object Car was created to make this tasks possible, see the packages created
 It's very simple to use Logger. Import org.slf4j.Logger and create the object with LoggerFactory.getLogger(), after that we can use Logger.info() and anothers methods to log. Messages must be meaningful and always remember to log the exception.
 We can configurate the log, here we put the file logback.xml to log into console with info level.
 RollingFileAppender and SizeAndTimeBasedRollingPolicy are used to config the logs into files, files max 1mb in size, 30 days and 1gb max storage.
+
+### 105_Properties_files
+
+You can create every property you want, Spring Boot keeps it simple and everything you need to do is write it in "application.properties" file, and in the code get the value with "env.getProperty()" method.
