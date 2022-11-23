@@ -16,6 +16,9 @@ It's a Maven Project!
 Commands:
 - mvn clean compile - Clean and compile the project;
 - mvn spring-boot:run - Run the application;
+- This are related to multiple property files:
+  - mvn clean package -Pprod
+  - java -jar app.jar -Dspring.profiles.active=prod 
 
 
 ### The project: Registration
@@ -55,6 +58,7 @@ This project has the functionality to store data of any type. You can store data
   - Remove the code that generates logs
 - 105_Properties_files
   - Added property to change the format of return from /time
+  - Change 1 application.properties to 3 files, more dev and prod, prod is default
 
 
 ## Tags
@@ -115,3 +119,6 @@ RollingFileAppender and SizeAndTimeBasedRollingPolicy are used to config the log
 ### 105_Properties_files
 
 You can create every property you want, Spring Boot keeps it simple and everything you need to do is write it in "application.properties" file, and in the code get the value with "env.getProperty()" method.
+
+We created two more property files: application-dev.properties and application-prod.properties. We moved the content of aplication.properties to these files and we change a little to show some difference when one or another runs. Prod start the server in 8080 port. Dev start the server in 8081 port.
+**Important**: For this was created the tag "profiles" in pom.xml, and we can change wich file runs in the tag "activeByDefault"! Alternatively, the profile can be directly specified in the application.properties file by adding the line: spring.profiles.active=prod
