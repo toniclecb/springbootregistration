@@ -60,7 +60,8 @@ This project has the functionality to store data of any type. You can store data
   - Added property to change the format of return from /time
   - Change 1 application.properties to 3 files, more dev and prod, prod is default
   - Change configuration of properties, change default profile from pom.xml to application.properties
-
+- 106_devtools
+  - Added spring dev tools dependency
 
 ## Tags
 
@@ -125,3 +126,9 @@ We created two more property files: application-dev.properties and application-p
 **Important**: For this was created the tag "profiles" in pom.xml, and we can change wich file runs in the tag "activeByDefault"! Alternatively, the profile can be directly specified in the application.properties file by adding the line: spring.profiles.active=prod
 
 We changed the format of setting the default profile from pom.xml to application.properties. This will help during the development, but previous configuration is nicer.
+
+### 106_devtools
+
+By adding "spring-boot-devtools" dependency we enable some helps in develpment time: Property defaults, Automatic Restart, Live Reload, Global settings, Remote applications. The most used is automatic restart, now by only saving the files the server restart and apply the changes, we don't need restart it by ourselves.
+
+
