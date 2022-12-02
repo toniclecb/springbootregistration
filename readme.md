@@ -62,6 +62,13 @@ This project has the functionality to store data of any type. You can store data
   - Change configuration of properties, change default profile from pom.xml to application.properties
 - 106_devtools
   - Added spring dev tools dependency
+- 107_Exception_handler
+  - Added Exception handler and defined a class to manipulate bad requests for /date and PathVariable
+
+
+
+
+
 
 ## Tags
 
@@ -131,4 +138,20 @@ We changed the format of setting the default profile from pom.xml to application
 
 By adding "spring-boot-devtools" dependency we enable some helps in develpment time: Property defaults, Automatic Restart, Live Reload, Global settings, Remote applications. The most used is automatic restart, now by only saving the files the server restart and apply the changes, we don't need restart it by ourselves.
 
+### 107_Exception_handler
 
+To test the exception handler we created the method TimeController.date(@PathVariable(value = "field") String field).
+We created a exception handler, class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler, annoted with @ControllerAdvice and @RestController. ControllerAdvice allows you to handle exceptions across the whole application basically an interceptor of exceptions thrown by methods annotated with @RequestMapping.
+Then we created class ExceptionResponse implements Serializable. This is the response when the handler is called and needs to answer something.
+After that, we created class UnsuportedDateFormatException extends RuntimeException annoted with @ResponseStatus(HttpStatus.BAD_REQUEST), this way we are defining that this class will handle bad requests. This class will be used in one of CustomizedResponseEntityExceptionHandler methods, in the annotation @ExceptionHandler(UnsuportedDateFormatException.class).
+Accessing an invalid address like http://localhost:8081/date/test will return this:
+{"timestamp":"2022-11-30T00:50:40.004+00:00","message":"The follow field is not suported: test","details":"uri=/date/test"}
+
+#### PathVariable
+
+PathVariable is used to handle template variables in the request URI mapping. Here we used to define which type of response we want.
+<code>@GetMapping("/date/{param}")
+public String date(@PathVariable(value = "param") String param){</code>
+Use {} in the GetMapping annotation, and define all fields with the same name, simple like that.
+The URI is something like that: http://localhost:8081/date/DayOfWeek
+"DayOfWeek" will be defined in the variable "param".
