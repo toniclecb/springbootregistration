@@ -64,7 +64,7 @@ This project has the functionality to store data of any type. You can store data
   - Added spring dev tools dependency
 - 107_Exception_handler
   - Added Exception handler and defined a class to manipulate bad requests for /date and PathVariable
-
+  - Added handler to not found response
 
 
 
@@ -155,3 +155,11 @@ public String date(@PathVariable(value = "param") String param){</code>
 Use {} in the GetMapping annotation, and define all fields with the same name, simple like that.
 The URI is something like that: http://localhost:8081/date/DayOfWeek
 "DayOfWeek" will be defined in the variable "param".
+
+#### Added handler to not found response
+
+To customize the not found response we need override the method handleNoHandlerFoundException in CustomizedResponseEntityExceptionHandler class to return our customized response (ExceptionResponse).
+To redirect the exception to our advice we need to set a couple of properties in the the properties file: spring.mvc.throw-exception-if-no-handler-found=true and spring.web.resources.add-mappings=false.
+spring.mvc.throw-exception-if-no-handler-found: Whether a "NoHandlerFoundException" should be thrown if no Handler was found to process a request.
+spring.web.resources.add-mappings: Whether to enable default resource handling.
+See https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html
