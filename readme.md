@@ -65,8 +65,8 @@ This project has the functionality to store data of any type. You can store data
 - 107_Exception_handler
   - Added Exception handler and defined a class to manipulate bad requests for /date and PathVariable
   - Added handler to not found response
-
-
+- 108_dependency_injection
+  - Creating our first Service and using dependency injection
 
 
 
@@ -163,3 +163,8 @@ To redirect the exception to our advice we need to set a couple of properties in
 spring.mvc.throw-exception-if-no-handler-found: Whether a "NoHandlerFoundException" should be thrown if no Handler was found to process a request.
 spring.web.resources.add-mappings: Whether to enable default resource handling.
 See https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html
+
+### 108_dependency_injection
+
+Here we export some logic from TimeController to DateTimeService and annotate it with @Service. This means that SpringBoot will manage the objects from this class.
+Now we can use DateTimeService in different places, first let's use in TimeController, we need annotation @AutoWired to SpringBoot know that must instanciate and manage this object.
