@@ -67,7 +67,8 @@ This project has the functionality to store data of any type. You can store data
   - Added handler to not found response
 - 108_dependency_injection
   - Creating our first Service and using dependency injection
-
+- 109_first_test
+  - Added the first test class for method DateTimeService.date() in the class DateTimeServiceTest
 
 
 ## Tags
@@ -168,3 +169,11 @@ See https://docs.spring.io/spring-boot/docs/current/reference/html/application-p
 
 Here we export some logic from TimeController to DateTimeService and annotate it with @Service. This means that SpringBoot will manage the objects from this class.
 Now we can use DateTimeService in different places, first let's use in TimeController, we need annotation @AutoWired to SpringBoot know that must instanciate and manage this object.
+We'll see more about dependency injection later on.
+See: https://www.baeldung.com/inversion-control-and-dependency-injection-in-spring
+
+### 109_first_test
+
+We created the class DateTimeServiceTest, using dependency injection we get access to DateTimeService, then we call the method date() with possibles values in the parameter and test it's response.
+In a test class the more important things are @SpringBootTest and @Test annotations and the assert comands that will check if the code runs on the right way.
+

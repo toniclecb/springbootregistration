@@ -2,6 +2,7 @@ package com.toniclecb.springbootregistration.services;
 
 import java.time.Instant;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 import org.springframework.stereotype.Service;
@@ -31,19 +32,29 @@ public class DateTimeService {
      * @return null if none of possibles values are supplied
      */
     public String date(String field){
+        if (field == null)
+            return null;
         switch (field) {
             case "DayOfMonth":
-                return "" + Instant.now().atZone(ZoneId.systemDefault()).getDayOfMonth();
+                return "" + getInstantNow().getDayOfMonth();
             case "DayOfWeek":
-                return "" + Instant.now().atZone(ZoneId.systemDefault()).getDayOfWeek();
+                return "" + getInstantNow().getDayOfWeek();
             case "DayOfYear":
-                return "" + Instant.now().atZone(ZoneId.systemDefault()).getDayOfYear();
+                return "" + getInstantNow().getDayOfYear();
             case "Month":
-                return "" + Instant.now().atZone(ZoneId.systemDefault()).getMonth();
+                return "" + getInstantNow().getMonth();
             case "Year":
-                return "" + Instant.now().atZone(ZoneId.systemDefault()).getYear();
+                return "" + getInstantNow().getYear();
         }
 
         return null;
+    }
+
+    /**
+     * Let's write less code putting repetitive code in method
+     * @return
+     */
+    public ZonedDateTime getInstantNow() {
+        return Instant.now().atZone(ZoneId.systemDefault());
     }
 }
