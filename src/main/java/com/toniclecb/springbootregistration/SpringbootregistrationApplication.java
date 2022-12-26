@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.toniclecb.springbootregistration.domain.entities.impl.CarCommom;
+import com.toniclecb.springbootregistration.interfaces.DateTime;
 
 @SpringBootApplication
 public class SpringbootRegistrationApplication implements CommandLineRunner {
@@ -25,6 +27,11 @@ public class SpringbootRegistrationApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootRegistrationApplication.class, args);
+	}
+
+	@Bean
+	public DateTime getDateTime(){
+		return new DateTimeImpl();
 	}
 
 	@Override

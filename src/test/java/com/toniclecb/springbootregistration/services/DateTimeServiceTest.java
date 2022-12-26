@@ -1,7 +1,10 @@
 package com.toniclecb.springbootregistration.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -10,21 +13,43 @@ import java.time.Year;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import com.toniclecb.springbootregistration.interfaces.DateTime;
 
 @SpringBootTest
 class DateTimeServiceTest {
 
-    @Autowired
-    DateTimeService dateTimeService;
+    // @Autowired here we go create our object, because we need mock Date
+    static DateTimeService dateTimeService;
+
+
+    /**
+     * Here we go mock the calls to methods on Date and mock the method getDate from DateTime
+     */
+    @BeforeAll
+    public static void setUp() {
+        final Date date = Mockito.mock(Date.class);
+        Mockito.when(date.toString()).thenReturn("Wed Dec 14 00:43:34 UTC 2022");
+        Mockito.when(date.toGMTString()).thenReturn("14 Dec 2022 00:52:13 GMT");
+
+        final DateTime dt = Mockito.mock(DateTime.class);
+        Mockito.when(dt.getDate()).thenReturn(date);
+
+        dateTimeService = new DateTimeService(dt);
+    }
 
     /**
      * "Test the field value equal to null"
      */
     @Test
-    void getStringDatetimeTest(){
+    void dateTest(){ // renaming because this method tests only date() method
         // I will write here in the comments another way to access DateTimeService and test
         // ZonedDateTime now = Instant.parse("1998-10-10T11:12:13.14Z").atZone(ZoneId.systemDefault());
         // DateTimeService dateTimeService = mock(DateTimeService.class);
@@ -61,5 +86,20 @@ class DateTimeServiceTest {
 
         valueReturned = dateTimeService.date("DayOfWeek");
         assertEquals(dayWeek.toString(), valueReturned);
+    }
+
+    @Test
+    void getStringDatetimeTest(){
+        String result = dateTimeService.getStringDatetime(null);
+        assertEquals("Wed Dec 14 00:43:34 UTC 2022", result);
+
+        result = dateTimeService.getStringDatetime("GMT");
+        assertEquals("14 Dec 2022 00:52:13 GMT", result);
+
+        result = dateTimeService.getStringDatetime("ISO-8601"); // 2022-12-14T01:17:39.192Z
+        assertNotNull(result);
+        assertTrue(result.startsWith(String.valueOf(Year.now().getValue())));
+        assertTrue(result.contains("T"));
+        assertTrue(result.contains("."));
     }
 }

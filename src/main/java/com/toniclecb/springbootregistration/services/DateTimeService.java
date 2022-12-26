@@ -7,8 +7,16 @@ import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
+import com.toniclecb.springbootregistration.interfaces.DateTime;
+
 @Service
 public class DateTimeService {
+
+    private final DateTime dateTime;
+
+    public DateTimeService(final DateTime dateTime) {
+        this.dateTime = dateTime;
+    }
 
     /**
      * Get a string value of the date
@@ -20,9 +28,9 @@ public class DateTimeService {
             // this is a easier way to represent datetime in a string
             return Instant.now().toString();
         } else if ("GMT".equals(datetime)){
-            return new Date().toGMTString();
+            return this.dateTime.getDate().toGMTString();
         } else {
-            return new Date().toString();
+            return this.dateTime.getDate().toString();
         }
     }
 

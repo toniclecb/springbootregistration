@@ -69,7 +69,7 @@ This project has the functionality to store data of any type. You can store data
   - Creating our first Service and using dependency injection
 - 109_first_test
   - Added the first test class for method DateTimeService.date() in the class DateTimeServiceTest
-
+  - Second test, Changing the code to a more testable code, remove the direct dependency on Date, test getStringDatetime
 
 ## Tags
 
@@ -177,3 +177,16 @@ See: https://www.baeldung.com/inversion-control-and-dependency-injection-in-spri
 We created the class DateTimeServiceTest, using dependency injection we get access to DateTimeService, then we call the method date() with possibles values in the parameter and test it's response.
 In a test class the more important things are @SpringBootTest and @Test annotations and the assert comands that will check if the code runs on the right way.
 
+In the second part of tests we did a few things:
+- Created interface DateTime
+- Created class DateTimeImpl
+- Changed getStringDatetime() method to use DateTime interface
+- In test, renamed getStringDatetimeTest() to dateTest()
+- Created a new getStringDatetimeTest()
+- Created a method setUp() annotated with @BeforeAll
+- Created a method getDateTime() annotated with @Bean
+
+Changes executed in DateTime, DateTimeImpl and DateTimeService were to provide a better way to structure the code, basically remove the direct dependency (Date) will allow us to inject different implementations (runtime and test runtime).
+In runtime the DateTime will be created at SpringbootRegistrationApplication.getDateTime() but in test we created that in setUp() method, and here we mocked methods from Date. We did this to exemplify the use of the mock.
+Spring @Bean annotation tells that a method produces a bean to be managed by the Spring container.
+@BeforeAll annotation is used to signal that annotated method should be executed before all tests.
