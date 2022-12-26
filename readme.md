@@ -73,6 +73,7 @@ This project has the functionality to store data of any type. You can store data
 - 110_upload_and_download_files
   - Create the class FileStorageConfig to store the directory of upload
   - Create the file controller (mapping for upload), file exception and service (method to store file)
+  - Create methods to download a file, controller and service
 ## Tags
 
 ### 100_initial - Initial project
@@ -204,3 +205,6 @@ In FileStorageController.uploadFile() we recive a MultipartFile, in the FileStor
 In FileStorageService we have the constructor that create directories.
 In the request the file needs to be set in body with type "form-data" (parameter "file").
 UploadFileResponseVO class was created to return some info to user in the response.
+
+We created FileStorageService.downloadFileResource() and FileStorageController.downloadFile() to generate the file in the /download request.
+MyFileNotFoundException was created to return errors when the file was not found.
