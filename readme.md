@@ -70,7 +70,8 @@ This project has the functionality to store data of any type. You can store data
 - 109_first_test
   - Added the first test class for method DateTimeService.date() in the class DateTimeServiceTest
   - Second test, Changing the code to a more testable code, remove the direct dependency on Date, test getStringDatetime
-
+- 110_upload_and_download_files
+  - Create the class FileStorageConfig to store the directory of upload
 ## Tags
 
 ### 100_initial - Initial project
@@ -190,3 +191,11 @@ Changes executed in DateTime, DateTimeImpl and DateTimeService were to provide a
 In runtime the DateTime will be created at SpringbootRegistrationApplication.getDateTime() but in test we created that in setUp() method, and here we mocked methods from Date. We did this to exemplify the use of the mock.
 Spring @Bean annotation tells that a method produces a bean to be managed by the Spring container.
 @BeforeAll annotation is used to signal that annotated method should be executed before all tests.
+
+### 110_upload_and_download_files
+
+First we added another dependency: "spring-boot-configuration-processor". This will allow us to set properties in another way, creating a prefix in ours properties files.
+Some properties of Spring already have been set, "spring.servlet.multipart" properties.
+Create the class FileStorageConfig to store the directory of upload.
+In SpringbootRegistrationApplication class there is the call to config file and we print the value of directory.
+

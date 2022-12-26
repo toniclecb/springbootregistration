@@ -25,6 +25,9 @@ public class SpringbootRegistrationApplication implements CommandLineRunner {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
+	@Autowired
+	FileStorageConfig fileConfig;
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootRegistrationApplication.class, args);
 	}
@@ -67,6 +70,9 @@ public class SpringbootRegistrationApplication implements CommandLineRunner {
 
 			log.info("************* Result of query *********************");
 			resultSetCars.forEach(car -> log.info(car.toString()));
+
+			log.info("************* Upload files directory: *********************");
+			log.info("-=> "+ fileConfig.getUploadDir());
 		} catch (DataAccessException e) {
 			log.error("Error while doing some database operation!", e);
 		}
