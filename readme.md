@@ -72,6 +72,7 @@ This project has the functionality to store data of any type. You can store data
   - Second test, Changing the code to a more testable code, remove the direct dependency on Date, test getStringDatetime
 - 110_upload_and_download_files
   - Create the class FileStorageConfig to store the directory of upload
+  - Create the file controller (mapping for upload), file exception and service (method to store file)
 ## Tags
 
 ### 100_initial - Initial project
@@ -199,3 +200,7 @@ Some properties of Spring already have been set, "spring.servlet.multipart" prop
 Create the class FileStorageConfig to store the directory of upload.
 In SpringbootRegistrationApplication class there is the call to config file and we print the value of directory.
 
+In FileStorageController.uploadFile() we recive a MultipartFile, in the FileStorageService.saveFile() we save it and return the filename!
+In FileStorageService we have the constructor that create directories.
+In the request the file needs to be set in body with type "form-data" (parameter "file").
+UploadFileResponseVO class was created to return some info to user in the response.
