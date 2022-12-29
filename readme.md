@@ -74,6 +74,9 @@ This project has the functionality to store data of any type. You can store data
   - Create the class FileStorageConfig to store the directory of upload
   - Create the file controller (mapping for upload), file exception and service (method to store file)
   - Create methods to download a file, controller and service
+- 111_spring_jpa
+  - Configure H2 database removing default config
+
 ## Tags
 
 ### 100_initial - Initial project
@@ -208,3 +211,7 @@ UploadFileResponseVO class was created to return some info to user in the respon
 
 We created FileStorageService.downloadFileResource() and FileStorageController.downloadFile() to generate the file in the /download request.
 MyFileNotFoundException was created to return errors when the file was not found.
+
+### 111_spring_jpa
+
+First, we write the datasource configuration in properties file and we don't depend on default settings for our H2 database.
