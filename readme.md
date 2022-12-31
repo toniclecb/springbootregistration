@@ -81,6 +81,7 @@ This project has the functionality to store data of any type. You can store data
   - Adding dependencies do Spring JPA and Mysql connector, update to java 17
   - Create entity Register and RegisterH2
   - Change properties file adding informations about connections to databases (h2 and mysql)
+  - Add Datasource configuration to our two databases
 
 
 ## Tags
@@ -235,3 +236,17 @@ There are a lot of others annotations to configure this entity like a table in d
 
 Change properties file adding informations about connections to databases (h2 and mysql): url, username, password and driver class name.
 Here is important to notice the prefix of two configurations: "spring.datasource" and "second.datasource".
+
+**Datasource configuration**
+
+This is needed only because we are using two databases in the same application, otherwise the default configuration of Spring will suffice.
+We created the classes H2Config and MySqlConfig to configure the datasource.
+The most important thing here is @ConfigurationProperties annotation that allow us to declare two configurations of database connections in one property file, basicly because "prefix".
+
+What these classes do is change the generation of some beans (DataSource, LocalContainerEntityManagerFactoryBean, PlatformTransactionManager).
+
+- DataSource because we need instance it with correct properties (@ConfigurationProperties(prefix = "second.datasource") for example);
+- LocalContainerEntityManagerFactoryBean because we need instance it with correct DataSource, dialect and path to entity package;
+- PlatformTransactionManager because we need instance it with correct EntityManagerFactory (from LocalContainerEntityManagerFactoryBean).
+
+See the MySqlConfig.java file, there are comments about all the annotations used there.
