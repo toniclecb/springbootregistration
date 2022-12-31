@@ -78,6 +78,8 @@ This project has the functionality to store data of any type. You can store data
   - Configure H2 database removing default config
   - Remove H2 example in SpringbootRegistrationApplication
   - Moving FileStorageConfig to package config
+  - Adding dependencies do Spring JPA and Mysql connector, update to java 17
+
 
 ## Tags
 
