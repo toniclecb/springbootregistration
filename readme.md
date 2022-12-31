@@ -82,6 +82,7 @@ This project has the functionality to store data of any type. You can store data
   - Create entity Register and RegisterH2
   - Change properties file adding informations about connections to databases (h2 and mysql)
   - Add Datasource configuration to our two databases
+  - Create the repositories RegisterH2Repository and RegisterRepository
 
 
 ## Tags
@@ -250,3 +251,9 @@ What these classes do is change the generation of some beans (DataSource, LocalC
 - PlatformTransactionManager because we need instance it with correct EntityManagerFactory (from LocalContainerEntityManagerFactoryBean).
 
 See the MySqlConfig.java file, there are comments about all the annotations used there.
+
+**Repository**
+
+We create the interfaces repositories RegisterH2Repository and RegisterRepository (mysql) to manage the database operations.
+They extend from JpaRepository and are empty interfaces, because Spring Data will find this interface and automatically create an implementation for it.
+Only by creating this interfaces we will have access to various methods (findAll, findAllById, getById, count, delete, save, etc.) to manage our entities without write any code.
