@@ -80,6 +80,7 @@ This project has the functionality to store data of any type. You can store data
   - Moving FileStorageConfig to package config
   - Adding dependencies do Spring JPA and Mysql connector, update to java 17
   - Create entity Register and RegisterH2
+  - Change properties file adding informations about connections to databases (h2 and mysql)
 
 
 ## Tags
@@ -230,3 +231,7 @@ Here we already see the power of annotations that will provide us with configura
 We use @Entity to inform that this class is a entity, @Table to declare explicitly the name of the table in database.
 There are a lot of others annotations to configure this entity like a table in database.
 
+**Database properties**
+
+Change properties file adding informations about connections to databases (h2 and mysql): url, username, password and driver class name.
+Here is important to notice the prefix of two configurations: "spring.datasource" and "second.datasource".
