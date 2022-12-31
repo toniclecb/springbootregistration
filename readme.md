@@ -83,6 +83,7 @@ This project has the functionality to store data of any type. You can store data
   - Change properties file adding informations about connections to databases (h2 and mysql)
   - Add Datasource configuration to our two databases
   - Create the repositories RegisterH2Repository and RegisterRepository
+  - Create the Service and Controller
 
 
 ## Tags
@@ -257,3 +258,16 @@ See the MySqlConfig.java file, there are comments about all the annotations used
 We create the interfaces repositories RegisterH2Repository and RegisterRepository (mysql) to manage the database operations.
 They extend from JpaRepository and are empty interfaces, because Spring Data will find this interface and automatically create an implementation for it.
 Only by creating this interfaces we will have access to various methods (findAll, findAllById, getById, count, delete, save, etc.) to manage our entities without write any code.
+
+**Service and Controller**
+
+Next step is create an endpoint in the application to allow users insert register in the database. For that we need create a controller with the method responsable for that.
+Some important annotations here are: RestController, RequestMapping, PostMapping and RequestBody, more informartions are in the comments of the class.
+We are versioning our Rest API, therefore adding "v1" to the endpoint of this class.
+To insert a register is necessary to call the follow url passing a json (by an client application or Postman or Insomnia):
+Method: POST
+URL: http://localhost:8081/api/v1/register
+Body: {"name": "Book", "description": "Register for books", "createDate": "2022-12-30T11:00:00Z"}
+
+The Service has the job to insert the register in the database using the repositories that we just created. The repositories are beans then they are inject in the Service class.
+The register is saved in H2 and in MySql database, and there aren't reason for that, except to exemplify the use of the two repositories.
