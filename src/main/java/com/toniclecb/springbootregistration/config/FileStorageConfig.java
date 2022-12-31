@@ -1,4 +1,4 @@
-package com.toniclecb.springbootregistration;
+package com.toniclecb.springbootregistration.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

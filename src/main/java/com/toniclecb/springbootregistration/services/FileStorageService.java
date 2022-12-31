@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.toniclecb.springbootregistration.FileStorageConfig;
+import com.toniclecb.springbootregistration.config.FileStorageConfig;
 import com.toniclecb.springbootregistration.exceptions.FileStorageException;
 import com.toniclecb.springbootregistration.exceptions.MyFileNotFoundException;
 

@@ -77,6 +77,7 @@ This project has the functionality to store data of any type. You can store data
 - 111_spring_jpa
   - Configure H2 database removing default config
   - Remove H2 example in SpringbootRegistrationApplication
+  - Moving FileStorageConfig to package config
 
 ## Tags
 
