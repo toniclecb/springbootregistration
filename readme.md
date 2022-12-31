@@ -79,6 +79,7 @@ This project has the functionality to store data of any type. You can store data
   - Remove H2 example in SpringbootRegistrationApplication
   - Moving FileStorageConfig to package config
   - Adding dependencies do Spring JPA and Mysql connector, update to java 17
+  - Create entity Register and RegisterH2
 
 
 ## Tags
@@ -219,3 +220,13 @@ MyFileNotFoundException was created to return errors when the file was not found
 ### 111_spring_jpa
 
 First, we write the datasource configuration in properties file and we don't depend on default settings for our H2 database.
+
+We need to add dependencies Spring JPA and Mysql connector: "spring-boot-starter-data-jpa" and "mysql-connector-java".
+The first will give us access to classes like EnableJpaRepositories and JpaRepository.
+The second will manage the access to MySql database.
+
+Create entity Register and RegisterH2 (each in its own package, this is important for future configurations). Register for MySql and has complete information while RegisterH2 is for H2 database and needs only "ID" and "name".
+Here we already see the power of annotations that will provide us with configurations about the table in database.
+We use @Entity to inform that this class is a entity, @Table to declare explicitly the name of the table in database.
+There are a lot of others annotations to configure this entity like a table in database.
+
