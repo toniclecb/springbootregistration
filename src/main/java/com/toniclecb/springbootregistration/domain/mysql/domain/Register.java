@@ -68,4 +68,14 @@ public class Register implements Serializable {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+
+    @Override
+    public String toString() {
+        return new StringBuilder().append("{")
+            .append("\"id\":\"").append(id).append("\",")
+            .append("\"name\":\"").append(name).append("\",")
+            .append("\"description\":\"").append(description).append("\",")
+            .append("\"createDate\":\"").append(createDate.toString()).append("\"")
+        .append("}").toString();
+    }
 }

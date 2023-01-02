@@ -84,6 +84,8 @@ This project has the functionality to store data of any type. You can store data
   - Add Datasource configuration to our two databases
   - Create the repositories RegisterH2Repository and RegisterRepository
   - Create the Service and Controller
+  - Create unit test class RegisterControllerTest, test insert, add new profile test, add dependency to io.rest-assured
+
 
 
 ## Tags
@@ -271,3 +273,30 @@ Body: {"name": "Book", "description": "Register for books", "createDate": "2022-
 
 The Service has the job to insert the register in the database using the repositories that we just created. The repositories are beans then they are inject in the Service class.
 The register is saved in H2 and in MySql database, and there aren't reason for that, except to exemplify the use of the two repositories.
+
+**Unit tests**
+
+First off all, sometimes your IDE can produce this error when running tests:
+
+> InstanceAlreadyExistsException: org.springframework.boot:type=Admin,name=SpringApplication
+
+The solution is to uncheck the "Enable JMX agent" in project configurations. Example in Visual Studio Code:
+
+> Boot-java › Live-information › Automatic-connection: On
+> Live Information - Automatic addition of JVM arguments enabling JMX and Process Connection via JMX Enabled
+
+To execute tests in our Controller and Services classes we need a new dependency in pom.xml:
+
+> io.rest-assured
+
+In this dependency we need add some exclusion tag in pom.xml to avoid conflict of versions in dependencies.
+
+Is important to state that in this case the tests will use the same database, to avoid that we created another profile and annotate the test class with
+
+> @ActiveProfiles("test")
+
+The file "application-test.properties" was copied from "application-dev.properties", but we changed the names of the databases.
+
+RegisterControllerTest was created to test method insertRegister.
+We start creating RequestSpecification, this has the port and the endpoint of request.
+Then we do the request by method given(), save the response and finally compare it using "asserts".
