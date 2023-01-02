@@ -85,7 +85,7 @@ This project has the functionality to store data of any type. You can store data
   - Create the repositories RegisterH2Repository and RegisterRepository
   - Create the Service and Controller
   - Create unit test class RegisterControllerTest, test insert, add new profile test, add dependency to io.rest-assured
-
+  - Change the driver-class-name of mysql connection to avoid the deprecated one
 
 
 ## Tags
