@@ -21,7 +21,7 @@ import com.toniclecb.springbootregistration.services.RegisterService;
 // RestController marks the class as a controller where every method returns a domain object instead of a view.
 @RestController
 // RequestMapping is used to map web requests onto specific handler
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/register")
 public class RegisterController {
     @Autowired
     RegisterService registerService;
@@ -29,7 +29,7 @@ public class RegisterController {
     private static final Logger log = LoggerFactory.getLogger(RegisterController.class);
     
     // PostMapping is used for mapping HTTP POST requests onto specific handler methods
-    @PostMapping(value = "/register")
+    @PostMapping
     // @RequestBody indicates that a method parameter should be bound to the value of the HTTP request body
     public ResponseEntity<Register> insertRegister(@RequestBody Register register){
         log.info("RegisterController.insertRegister()");
@@ -41,14 +41,14 @@ public class RegisterController {
         return ResponseEntity.ok().body(register);
     }
 
-    @PutMapping(value = "/register")
+    @PutMapping
 	public ResponseEntity<Register> update(@RequestBody Register register) {
 		Register savedRegister = registerService.update(register);
 		
 		return ResponseEntity.ok().body(savedRegister);
 	}
 
-    @DeleteMapping(value = "/register/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") UUID id){
         registerService.remove(id);
         return ResponseEntity.ok().build();

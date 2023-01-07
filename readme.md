@@ -88,6 +88,7 @@ This project has the functionality to store data of any type. You can store data
   - Change the driver-class-name of mysql connection to avoid the deprecated one
 - 112_controller
   - Create update method and delete method
+  - Change how we did our mapping, change "/register" mapping to class
 
 
 ## Tags
@@ -309,3 +310,6 @@ Create update method and delete method in classes RegisterController and Registe
 In the controller we must use the annotations @PutMapping and @DeleteMapping.
 In the delete method we pass a parameter by url, then we must the annotation @PathVariable("id").
 **ResourceNotFoundException**: Was created to return a response with the information that there isn't a element with the ID sent (the record was not found).
+
+Now we changed how we did our mapping. Change "/register" mapping to class removing it from methods. This makes the class cleaner and the endpoints aren't affected (the url to api continues the same).
+
