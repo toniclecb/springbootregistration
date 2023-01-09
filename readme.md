@@ -89,6 +89,7 @@ This project has the functionality to store data of any type. You can store data
 - 112_controller
   - Create update method and delete method
   - Change how we did our mapping, change "/register" mapping to class
+  - Improving the model Register, AbstractEntity, hashCode, equals
 
 
 ## Tags
@@ -312,4 +313,7 @@ In the delete method we pass a parameter by url, then we must the annotation @Pa
 **ResourceNotFoundException**: Was created to return a response with the information that there isn't a element with the ID sent (the record was not found).
 
 Now we changed how we did our mapping. Change "/register" mapping to class removing it from methods. This makes the class cleaner and the endpoints aren't affected (the url to api continues the same).
+
+Improving the model Register: we created AbstractEntity to implement Serializable and it have the signature of method getId(), added methods hashCode and equals!
+The method getId will allow us to work with AbstractEntity instead of Register, sometimes it make the things easier!
 
