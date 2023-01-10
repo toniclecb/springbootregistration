@@ -90,6 +90,8 @@ This project has the functionality to store data of any type. You can store data
   - Create update method and delete method
   - Change how we did our mapping, change "/register" mapping to class
   - Improving the model Register, AbstractEntity, hashCode, equals
+- 113_findAll
+  - Create the method to find all registers
 
 
 ## Tags
@@ -316,4 +318,9 @@ Now we changed how we did our mapping. Change "/register" mapping to class remov
 
 Improving the model Register: we created AbstractEntity to implement Serializable and it have the signature of method getId(), added methods hashCode and equals!
 The method getId will allow us to work with AbstractEntity instead of Register, sometimes it make the things easier!
+
+### 113_findAll
+
+The simplest way to make available a endpoint to get all the registers saved is implement a method in Controller and another in Service.
+The method in Controller need to be a GET then we annotate with @GetMapping. In the service, the repository already has a findAll method to us to use it.
 

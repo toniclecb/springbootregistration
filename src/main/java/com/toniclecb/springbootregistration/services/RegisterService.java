@@ -1,8 +1,10 @@
 package com.toniclecb.springbootregistration.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -82,5 +84,9 @@ public class RegisterService {
         } else {
             log.info("H2: No record found for this id: " + id);
         }
+    }
+
+    public List<Register> findAll() {
+        return registerRepository.findAll();
     }
 }
