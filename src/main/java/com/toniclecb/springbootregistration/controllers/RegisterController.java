@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,9 +63,11 @@ public class RegisterController {
 
     @GetMapping
     public ResponseEntity<Page<Register>> find(@RequestParam(value = "page", defaultValue = "0") Integer page,
-        @RequestParam(value = "size", defaultValue = "1") Integer size){
+        @RequestParam(value = "size", defaultValue = "1") Integer size,
+        @RequestParam(value = "sort", defaultValue = "asc") String sort){
 
-        Pageable pageable = PageRequest.of(page, size);
+        // only if the value of sort is 'desc' will use descending
+        Pageable pageable = PageRequest.of(page, size, "desc".equalsIgnoreCase(sort) ? Sort.by("name").descending() : Sort.by("name").ascending());
         
         return ResponseEntity.ok().body(registerService.findAll(pageable));
     }

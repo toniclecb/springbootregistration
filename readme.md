@@ -93,7 +93,9 @@ This project has the functionality to store data of any type. You can store data
 - 113_findAll
   - Create the method to find all registers
   - Change the method to find all registers to use pageable
+  - Adding sorting on the find method
 
+  
 
 
 
@@ -332,6 +334,9 @@ Now, to use pagination we need do changes:
 - we call findAll(Pageable) in the repository, then we need create Pageable in Controller, we use PageRequest.of(page, size).
 - we use @RequestParam to recive the parameters page and size (and define the default values).
 - we change the return of RegisterController.find() to ResponseEntity < Page < Register > > .
+
+To use sorting in this case we need only change PageRequest.of adding sort type. Of course we recive the sort string in @RequestParam.
+Example of complete URL: http://localhost:8081/api/v1/register?size=5&sort=asc&page=7
 
 
 
