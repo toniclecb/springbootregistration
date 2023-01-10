@@ -92,6 +92,9 @@ This project has the functionality to store data of any type. You can store data
   - Improving the model Register, AbstractEntity, hashCode, equals
 - 113_findAll
   - Create the method to find all registers
+  - Change the method to find all registers to use pageable
+
+
 
 
 ## Tags
@@ -323,4 +326,15 @@ The method getId will allow us to work with AbstractEntity instead of Register, 
 
 The simplest way to make available a endpoint to get all the registers saved is implement a method in Controller and another in Service.
 The method in Controller need to be a GET then we annotate with @GetMapping. In the service, the repository already has a findAll method to us to use it.
+
+Now, to use pagination we need do changes:
+- repositories classes now extends PagingAndSortingRepository.
+- we call findAll(Pageable) in the repository, then we need create Pageable in Controller, we use PageRequest.of(page, size).
+- we use @RequestParam to recive the parameters page and size (and define the default values).
+- we change the return of RegisterController.find() to ResponseEntity < Page < Register > > .
+
+
+
+
+
 

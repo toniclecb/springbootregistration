@@ -1,6 +1,10 @@
 package com.toniclecb.springbootregistration.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -86,7 +90,7 @@ public class RegisterService {
         }
     }
 
-    public List<Register> findAll() {
-        return registerRepository.findAll();
+    public Page<Register> findAll(Pageable pageable) {
+        return registerRepository.findAll(pageable);
     }
 }
