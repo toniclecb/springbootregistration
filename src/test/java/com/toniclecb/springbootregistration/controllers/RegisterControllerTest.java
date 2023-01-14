@@ -39,6 +39,7 @@ public class RegisterControllerTest {
 
     @BeforeAll
 	public static void setup() {
+        // this register will be used to insert into body of the request (.body(register)), after that will be used to make asserts
 		register = new Register();
         uuid = UUID.randomUUID();
         register.setId(uuid);
@@ -79,5 +80,22 @@ public class RegisterControllerTest {
         assertEquals(register.getName(), savedRegister.getName());
         assertEquals(register.getDescription(), savedRegister.getDescription());
         assertEquals(register.getCreateDate().getTime(), savedRegister.getCreateDate().getTime());
+    }
+
+    @Test
+    public void testFindAll(){
+        String response = given().spec(specification)
+                .contentType(ContentType.JSON)
+                .when()
+                .get()
+            .then()
+                .statusCode(200)
+                .extract()
+                .body()
+                .asString();
+
+        assertTrue(response.contains("content"));
+        assertTrue(response.contains("totalElements"));
+        assertTrue(response.contains("totalPages"));
     }
 }

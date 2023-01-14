@@ -94,8 +94,8 @@ This project has the functionality to store data of any type. You can store data
   - Create the method to find all registers
   - Change the method to find all registers to use pageable
   - Adding sorting on the find method
+  - Create tests units for find all method
 
-  
 
 
 
@@ -338,8 +338,8 @@ Now, to use pagination we need do changes:
 To use sorting in this case we need only change PageRequest.of adding sort type. Of course we recive the sort string in @RequestParam.
 Example of complete URL: http://localhost:8081/api/v1/register?size=5&sort=asc&page=7
 
+**Tests:**
 
-
-
-
-
+For the first test, we need to use the method given() from RestAssured to access the methods from the controller of our application.
+RequestSpecification is needed to config the request. The response is transformed in a String by the sequence .then().statusCode(200).extract().body().asString().
+Basically the first test checks if Page fields are present in the response.
