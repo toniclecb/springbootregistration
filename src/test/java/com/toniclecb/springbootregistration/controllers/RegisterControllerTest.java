@@ -1,37 +1,46 @@
 package com.toniclecb.springbootregistration.controllers;
 
 import static io.restassured.RestAssured.given;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.toniclecb.springbootregistration.domain.mysql.domain.Register;
+import com.toniclecb.springbootregistration.domain.mysql.repo.RegisterRepository;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.toniclecb.springbootregistration.domain.mysql.domain.Register;
-
 import io.restassured.specification.RequestSpecification;
 
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class RegisterControllerTest {
     
+    @Mock
+    private RegisterRepository registerRepository;
+
 	private static RequestSpecification specification;
     private static Register register;
     private static UUID uuid;
@@ -82,8 +91,33 @@ public class RegisterControllerTest {
         assertEquals(register.getCreateDate().getTime(), savedRegister.getCreateDate().getTime());
     }
 
+    // in this example we are testing everything, from controller, service, repository, query, etc.
+    // not a unit test really...
     @Test
     public void testFindAll(){
+        String response = given().spec(specification)
+                .contentType(ContentType.JSON)
+                .when()
+                .get()
+            .then()
+                .statusCode(200)
+                .extract()
+                .body()
+                .asString();
+
+        assertTrue(response.contains("content"));
+        assertTrue(response.contains("totalElements"));
+        assertTrue(response.contains("totalPages"));
+    }
+
+    // in this case, we stopped testing RegisterRepository.findAll(),
+    // the test unit decreased but is not a unit yet
+    @Test
+    public void testUnitFindAll(){
+        List<Register> regs = new ArrayList();
+        Page<Register> pagedRegs = new PageImpl(regs);
+        Mockito.when(registerRepository.findAll(org.mockito.ArgumentMatchers.isA(Pageable.class))).thenReturn(pagedRegs);
+
         String response = given().spec(specification)
                 .contentType(ContentType.JSON)
                 .when()

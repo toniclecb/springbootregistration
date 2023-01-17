@@ -95,6 +95,7 @@ This project has the functionality to store data of any type. You can store data
   - Change the method to find all registers to use pageable
   - Adding sorting on the find method
   - Create tests units for find all method
+  - Mocking methods, decreased the size of the test
 
 
 
@@ -343,3 +344,6 @@ Example of complete URL: http://localhost:8081/api/v1/register?size=5&sort=asc&p
 For the first test, we need to use the method given() from RestAssured to access the methods from the controller of our application.
 RequestSpecification is needed to config the request. The response is transformed in a String by the sequence .then().statusCode(200).extract().body().asString().
 Basically the first test checks if Page fields are present in the response.
+
+Now we start mocking some methods, because our test must be unitary. In this case we stopped testing RegisterRepository.findAll().
+That means we don't need the test database (the method from repository won't be called).
