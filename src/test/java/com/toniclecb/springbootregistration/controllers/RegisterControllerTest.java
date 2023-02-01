@@ -26,6 +26,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.toniclecb.springbootregistration.domain.mysql.domain.Register;
 import com.toniclecb.springbootregistration.domain.mysql.repo.RegisterRepository;
+import com.toniclecb.springbootregistration.services.RegisterService;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -40,6 +41,9 @@ public class RegisterControllerTest {
     
     @Mock
     private RegisterRepository registerRepository;
+
+    @Mock
+    private RegisterService registerService;
 
 	private static RequestSpecification specification;
     private static Register register;
@@ -128,6 +132,29 @@ public class RegisterControllerTest {
                 .body()
                 .asString();
 
+        assertTrue(response.contains("content"));
+        assertTrue(response.contains("totalElements"));
+        assertTrue(response.contains("totalPages"));
+    }
+
+    // in this case, we stopped testing RegisterService.findAll(),
+    // the test unit decreased even more
+    @Test
+    public void testUnitServiceFindAll(){
+        List<Register> regs = new ArrayList();
+        Page<Register> pagedRegs = new PageImpl(regs);
+        Mockito.when(registerService.findAll(org.mockito.ArgumentMatchers.isA(Pageable.class))).thenReturn(pagedRegs);
+
+        String response = given().spec(specification)
+                .contentType(ContentType.JSON)
+                .when()
+                .get()
+            .then()
+                .statusCode(200)
+                .extract()
+                .body()
+                .asString();
+        // repeat the asserts
         assertTrue(response.contains("content"));
         assertTrue(response.contains("totalElements"));
         assertTrue(response.contains("totalPages"));

@@ -96,6 +96,7 @@ This project has the functionality to store data of any type. You can store data
   - Adding sorting on the find method
   - Create tests units for find all method
   - Mocking methods, decreased the size of the test
+  - Mocking Service methods, decreased the size of the test
 
 
 
@@ -347,3 +348,6 @@ Basically the first test checks if Page fields are present in the response.
 
 Now we start mocking some methods, because our test must be unitary. In this case we stopped testing RegisterRepository.findAll().
 That means we don't need the test database (the method from repository won't be called).
+Mocking registerService.findAll() we mock the behavior of the Service and it will not even call RegisterRepository.findAll().
+Now we are testing only RegisterController.find(), then basically we are testing the response in a Pageable format.
+
