@@ -97,6 +97,7 @@ This project has the functionality to store data of any type. You can store data
   - Create tests units for find all method
   - Mocking methods, decreased the size of the test
   - Mocking Service methods, decreased the size of the test
+  - Separating integration tests from unit tests in RegisterControllerUnitTest and RegisterControllerTest classes
 
 
 
@@ -350,4 +351,18 @@ Now we start mocking some methods, because our test must be unitary. In this cas
 That means we don't need the test database (the method from repository won't be called).
 Mocking registerService.findAll() we mock the behavior of the Service and it will not even call RegisterRepository.findAll().
 Now we are testing only RegisterController.find(), then basically we are testing the response in a Pageable format.
+
+**Separating integration tests from unit tests in RegisterControllerUnitTest and RegisterControllerTest classes**
+
+In this commit we did a lot:
+We split the class test for RegisterController into two files;
+Three dependencies were added: "rest-assured-common", "json-path", "xml-path" from "rest-assured" project, this to facilitate the json mapping (jsonPath.getList("content", Register.class));
+Added a new element (io.rest-assured.version) in properties tag in pom.xml, this save the version of rest-assured lib;
+Class RegisterControllerTest will test everything, including the database;
+RegisterControllerUnitTest will test basically RegisterController.find() method and response in Pageable format;
+Added @AutoConfigureMockMvc in RegisterControllerUnitTest: the annotation is used to configure and apply Spring MVC infrastructure components such as request handling and parsing to support testing of web components that use the MockMvc framework;
+We changed DEFINED_PORT to RANDOM_PORT in SpringBootTest annotation to avoid problems of confliting ports in tests;
+Then we need to change default 8081 port to the value found in "${local.server.port}" property (@Value);
+Now setup() method is no longer static, because of use of 'port', for that reason we used @TestInstance(Lifecycle.PER_CLASS) annotation (when this annotation is used, the test class is instantiated once per test class, rather than once per test method);
+Moved TimeController file to 'controllers' directory.
 

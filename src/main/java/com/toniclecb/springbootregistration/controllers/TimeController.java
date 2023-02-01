@@ -1,4 +1,4 @@
-package com.toniclecb.springbootregistration;
+package com.toniclecb.springbootregistration.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
