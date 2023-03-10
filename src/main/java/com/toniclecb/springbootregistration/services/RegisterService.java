@@ -29,6 +29,10 @@ public class RegisterService {
     
     private static final Logger log = LoggerFactory.getLogger(RegisterService.class);
 
+    public Register find(UUID id) {
+        return registerRepository.findById(id).orElseThrow();
+    }
+
     /**
      * 
      * @param register

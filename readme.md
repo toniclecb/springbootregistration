@@ -98,7 +98,8 @@ This project has the functionality to store data of any type. You can store data
   - Mocking methods, decreased the size of the test
   - Mocking Service methods, decreased the size of the test
   - Separating integration tests from unit tests in RegisterControllerUnitTest and RegisterControllerTest classes
-
+- 114_changeStatusResponse
+  - Change status response to 201 in insert method
 
 
 
@@ -365,4 +366,9 @@ We changed DEFINED_PORT to RANDOM_PORT in SpringBootTest annotation to avoid pro
 Then we need to change default 8081 port to the value found in "${local.server.port}" property (@Value);
 Now setup() method is no longer static, because of use of 'port', for that reason we used @TestInstance(Lifecycle.PER_CLASS) annotation (when this annotation is used, the test class is instantiated once per test class, rather than once per test method);
 Moved TimeController file to 'controllers' directory.
+
+### 114_changeStatusResponse
+
+The HTTP status code 201 (created) is used in an API REST when a new resource has been successfully created as a result of a POST request. This is the correct HTTP status code to return because it indicates that the server has fulfilled the request and has created a new resource as a result. Along with the "Location" header that provides the URL of the newly created resource, helps to identify the location of the new resource and allows clients to access it.
+In the test we changed the value 200 to 201 in statusCode, and we tested the "Location" header with the line: assertTrue(headerLocation.contains("/register/" + savedRegister.getId()));
 

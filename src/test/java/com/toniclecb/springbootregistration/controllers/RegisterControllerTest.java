@@ -27,6 +27,8 @@ import io.restassured.filter.log.LogDetail;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
+import io.restassured.response.ExtractableResponse;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 @ActiveProfiles("test")
@@ -63,17 +65,20 @@ public class RegisterControllerTest {
 
     @Test
     public void testInsertRegister() throws JsonMappingException, JsonProcessingException {
-        String response = given().spec(specification)
+        ExtractableResponse<Response> extract = given().spec(specification)
                 .contentType(ContentType.JSON)
                 .body(register)
                 .when()
                 .post()
             .then()
-                .statusCode(200)
-                .extract()
+                .statusCode(201)
+                .extract();
+        String response = extract
                 .body()
                 .asString();
+        String headerLocation = extract.header("Location");
         
+        System.out.println("headerLocation: " + headerLocation);
         System.out.println(">>> " + response);
         System.out.println("}}} " + register.toString());
 
@@ -82,6 +87,8 @@ public class RegisterControllerTest {
         Register savedRegister = objectMapper.readValue(response, Register.class);
 		
         assertNotNull(response);
+        // assert that response has a header location linked to correct element
+        assertTrue(headerLocation.contains("/register/" + savedRegister.getId()));
         assertEquals(register.getName(), savedRegister.getName());
         assertEquals(register.getDescription(), savedRegister.getDescription());
         assertEquals(register.getCreateDate().getTime(), savedRegister.getCreateDate().getTime());
